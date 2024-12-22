@@ -27,7 +27,8 @@ class BaseOTLPHandler(LoggingHandler, ObservabilityConfig):
         :param instance_id: host name
         """
 
-        super(ObservabilityConfig, self).__init__(
+        ObservabilityConfig.__init__(
+            self,
             service_name=service_name,
             instance_id=instance_id,
         )
@@ -45,4 +46,8 @@ class BaseOTLPHandler(LoggingHandler, ObservabilityConfig):
 
         # trace_provider = TracerProvider()
 
-        super(LoggingHandler, self).__init__(level=logging.NOTSET, logger_provider=logger_provider)
+        LoggingHandler.__init__(
+            self,
+            level=logging.NOTSET,
+            logger_provider=logger_provider
+        )
