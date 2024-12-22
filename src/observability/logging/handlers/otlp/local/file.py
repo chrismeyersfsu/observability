@@ -5,7 +5,6 @@ from logging.handlers import WatchedFileHandler as STDLibWatchedFileHandler
 
 
 from observability.logging.handlers.adapters.otlp import BaseJsonHandler
-from observability.logging.filters.otlp import JSONNLFormatter
 
 
 class WatchedFileHandler(BaseJsonHandler):
@@ -20,7 +19,7 @@ class WatchedFileHandler(BaseJsonHandler):
         if not filename:
             raise ValueError("Expected filename, got None")
         handler = STDLibWatchedFileHandler(filename)
-        handler.setFormatter(JSONNLFormatter())
+        
         super().__init__(
             handler,
             service_name=service_name,
