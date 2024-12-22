@@ -11,8 +11,13 @@ from opentelemetry.sdk._logs.export import BatchLogRecordProcessor
 
 
 class OTLPRemoteServerHandler(BaseOTLPHandler):
-    def __init__(self, endpoint=None, protocol='grpc', service_name=None, instance_id=None, auth=None, username=None, password=None):
-        super(BaseOTLPHandler, self).__init__(service_name=None, instance_id=None)
+    def __init__(
+        self, endpoint=None, protocol='grpc',
+        service_name=None, instance_id=None,
+        auth=None, username=None, password=None,
+    ) -> None:
+        super().__init__(service_name=None, instance_id=None)
+
         if not endpoint:
             raise ValueError("endpoint required")
 
