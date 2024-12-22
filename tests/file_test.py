@@ -4,7 +4,7 @@ import json
 import logging
 import tempfile
 
-from observability.logging.handlers.otlp.local.file import WatchedFileHandler
+from observability.logging.handlers import WatchedFileHandler
 
 
 def test_watch_file_hander():
