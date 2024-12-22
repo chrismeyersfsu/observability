@@ -19,7 +19,7 @@ class BaseOTLPHandler(LoggingHandler, ObservabilityConfig):
     def __init__(
         self,
         service_name: str = None,
-        instance_name: str = None,
+        instance_id: str = None,
     ) -> None:
         """Registers the log provider.
         

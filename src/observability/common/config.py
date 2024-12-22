@@ -9,7 +9,7 @@ class ObservabilityConfig:
     def __init__(
         self,
         service_name: str = None,
-        instance_name: str = None,
+        instance_id: str = None,
     ) -> None:
         """Properties that will be added to every log message.
 
