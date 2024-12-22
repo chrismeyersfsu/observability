@@ -10,12 +10,16 @@ from opentelemetry.sdk.resources import Resource
 from opentelemetry._logs import set_logger_provider
 
 from observability.common.config import ObservabilityConfig
+from observability.logging.record_processor.json import JsonExporterHandlerAdapter
 
 
 class BaseOTLPHandler(LoggingHandler, ObservabilityConfig):
     """Base.
 
     """
+
+    self._logger_provider = None
+
     def __init__(
         self,
         service_name: str = None,
@@ -41,6 +45,10 @@ class BaseOTLPHandler(LoggingHandler, ObservabilityConfig):
                 }
             ),
         )
+        logger_provider.add_log_record_processor(
+            SimpleLogRecordProcessor(
+                JsonExporterHandlerAdapter(handler)))
+
         # Needed so that emit() will work.
         set_logger_provider(logger_provider)
 
@@ -51,3 +59,5 @@ class BaseOTLPHandler(LoggingHandler, ObservabilityConfig):
             level=logging.NOTSET,
             logger_provider=logger_provider
         )
+
+        self._logger_provider = logger_provider
