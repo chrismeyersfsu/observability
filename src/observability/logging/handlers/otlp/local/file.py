@@ -12,16 +12,12 @@ class WatchedFileHandler(BaseJsonHandler):
 
     def __init__(
         self,
-        filename: str = None,
+        filename: str,
         service_name: str = None,
         instance_id: str = None,
     ) -> None:
-        if not filename:
-            raise ValueError("Expected filename, got None")
-        handler = STDLibWatchedFileHandler(filename)
-        
         super().__init__(
-            handler,
+            STDLibWatchedFileHandler(filename),
             service_name=service_name,
             instance_id=instance_id
         )

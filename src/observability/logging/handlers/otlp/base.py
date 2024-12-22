@@ -22,7 +22,7 @@ from observability.common.config import ObservabilityConfig
 
 
 class BaseOTLPHandler(LoggingHandler, ObservabilityConfig):
-    """Base.
+    """Adapts OTLP log provider to python logging handler.
 
     """
     def __init__(
@@ -63,7 +63,10 @@ class BaseOTLPHandler(LoggingHandler, ObservabilityConfig):
 
 
 class BaseJsonHandler(BaseOTLPHandler):
-    """."""
+    """Connects the OTLP log provider to the handler.
+    
+    Converts OTLP to JSON.
+    """
 
     def __init__(
         self,
@@ -71,6 +74,8 @@ class BaseJsonHandler(BaseOTLPHandler):
         service_name: str = None,
         instance_id: str = None,
     ):
+        self._handler = handler
+
         super().__init__(service_name=service_name, instance_id=instance_id)
 
         handler.setFormatter(JSONNLFormatter())
