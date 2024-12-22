@@ -2,7 +2,7 @@
 
 import logging
 
-from observability.logging.handlers.adapters.otlp import BaseJsonHandler
+from observability.logging.handlers.otlp.base import BaseJsonHandler
 
 
 class OTLPStreamHandler(BaseJsonHandler):
