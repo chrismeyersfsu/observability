@@ -18,6 +18,7 @@ from opentelemetry.exporter.otlp.proto.common._log_encoder import encode_logs
 from opentelemetry._logs import get_logger_provider
 
 from observability.logging.handlers.otlp.base import BaseOTLPHandler
+from observability.logging.filters.otlp import JSONNLFormatter
 
 
 class JsonExporterHandlerAdapter(LogExporter):
@@ -57,6 +58,8 @@ class BaseJsonHandler(BaseOTLPHandler):
         instance_id: str = None,
     ):
         super().__init__(service_name=service_name, instance_id=instance_id)
+
+        handler.setFormatter(JSONNLFormatter())
 
         get_logger_provider().add_log_record_processor(
             SimpleLogRecordProcessor(JsonExporterHandlerAdapter(handler)))
