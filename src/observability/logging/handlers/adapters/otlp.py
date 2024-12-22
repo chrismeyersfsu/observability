@@ -1,5 +1,7 @@
 """Translate OTLP specific data-structures to python log handler."""
 
+import logging
+
 from observability.logging.handlers.otlp.base import BaseOTLPHandler
 from opentelemetry.sdk._logs.export import (
     SimpleLogRecordProcessor,
