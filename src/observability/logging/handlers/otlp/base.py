@@ -27,7 +27,10 @@ class BaseOTLPHandler(LoggingHandler, ObservabilityConfig):
         :param instance_id: host name
         """
 
-        super(ObservabilityConfig, self).__init__(*args, **kwargs)
+        super(ObservabilityConfig, self).__init__(
+            service_name=service_name,
+            instance_id=instance_id,
+        )
 
         logger_provider = LoggerProvider(
             resource=Resource.create(
