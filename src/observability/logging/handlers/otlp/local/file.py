@@ -4,7 +4,7 @@ import logging
 from logging.handlers import WatchedFileHandler as STDLibWatchedFileHandler
 
 
-from observability.logging.handlers.adapters.otlp import BaseJsonHandler
+from observability.logging.handlers.otlp.base import BaseJsonHandler
 
 
 class WatchedFileHandler(BaseJsonHandler):
