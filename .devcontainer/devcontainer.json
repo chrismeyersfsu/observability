@@ -4,7 +4,7 @@
     "features": {
       "ghcr.io/devcontainers/features/docker-in-docker:1": {}
     },
-    "postCreateCommand": "pip install -r requirements/base.txt",
+    "postCreateCommand": "pip install -r requirements/base.txt && pip install -r requirements/test.txt",
     "customizations": {
       "vscode": {
         "settings": {
