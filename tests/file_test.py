@@ -5,6 +5,7 @@ import logging
 import tempfile
 
 from observability.logging.handlers import WatchedFileHandler
+from observability.common.config import ObservabilityConfig
 
 
 def test_watch_file_hander():
@@ -16,8 +17,10 @@ def test_watch_file_hander():
     with tempfile.NamedTemporaryFile() as log_file:
         logger.addHandler(WatchedFileHandler(
             log_file.name,
-            service_name='foo',
-            instance_id='bar',
+            ObservabilityConfig(
+                service_name='foo',
+                instance_id='bar',
+            )
         ))
 
         logger.info("Hello")

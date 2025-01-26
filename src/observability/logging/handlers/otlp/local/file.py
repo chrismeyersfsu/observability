@@ -5,6 +5,7 @@ from logging.handlers import WatchedFileHandler as STDLibWatchedFileHandler
 
 
 from observability.logging.handlers.otlp.base import BaseJsonHandler
+from observability.common.config import ObservabilityConfig
 
 
 class WatchedFileHandler(BaseJsonHandler):
@@ -13,11 +14,9 @@ class WatchedFileHandler(BaseJsonHandler):
     def __init__(
         self,
         filename: str,
-        service_name: str = None,
-        instance_id: str = None,
+        config: ObservabilityConfig,
     ) -> None:
         super().__init__(
             STDLibWatchedFileHandler(filename),
-            service_name=service_name,
-            instance_id=instance_id
+            config=config,
         )
