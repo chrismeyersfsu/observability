@@ -1,0 +1,38 @@
+{
+    "name": "Observability Dev Environment",
+    "image": "mcr.microsoft.com/devcontainers/python:3.10",
+    "features": {
+      "ghcr.io/devcontainers/features/docker-in-docker:1": {}
+    },
+    "postCreateCommand": "pip install -r requirements/base.txt && pip install -r requirements/test.txt",
+    "customizations": {
+      "vscode": {
+        "settings": {
+          "python.defaultInterpreterPath": "/usr/local/bin/python",
+          "editor.formatOnSave": true,
+          "files.exclude": {
+            "**/__pycache__": true,
+            "**/*.pyc": true
+          }
+        },
+        "extensions": [
+          "ms-python.python",
+          "ms-toolsai.jupyter",
+          "editorconfig.editorconfig",
+          "eamodio.gitlens"
+        ]
+      }
+    },
+    "mounts": [],
+    "forwardPorts": [8000, 3000],
+    "remoteEnv": {
+      "PYTHONPATH": "/workspace/src"
+    },
+    "portsAttributes": {
+      "8000": {
+        "label": "Web Application",
+        "onAutoForward": "openPreview"
+      }
+    }
+  }
+  
